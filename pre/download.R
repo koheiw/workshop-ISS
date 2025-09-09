@@ -2,6 +2,7 @@ library(rvest)
 library(stringi)
 
 url <- "https://worldjpn.net/documents/indices/exdpm/index.html" # PM speech
+#url <- "https://worldjpn.net/documents/indices/exdfam/index.html" # FM speech
 
 html <- read_html(url)
 tr <- html_element(html, xpath = ".//table[2]") %>% 
@@ -44,7 +45,6 @@ for (i in seq_along(dat$url)) {
   )
   Sys.sleep(5)
 }
-dat$date0 <- NULL
 
-saveRDS(dat, "data_speech_pm.RDS")
+saveRDS(dat, "data_speech.RDS")
 
