@@ -4,9 +4,12 @@ library(stringi)
 
 dat <- readRDS("data/data_speech.RDS") %>% 
   subset(!is.na(date) & !is.na(text))
+
 dat$year <- as.integer(format(dat$date, "%Y"))
 dat$speaker[dat$speaker == "森嘉朗"] <- "森喜朗"
+dat$speaker[dat$date == "1995-02-09"] <- "村山富市"
 dat$speaker <- factor(dat$speaker, unique(dat$speaker))
+
 dat$text <- stri_trans_nfkc(dat$text)
 dat$doc_id <- stri_replace_last_fixed(basename(dat$url), ".html", "")
 
