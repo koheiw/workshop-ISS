@@ -6,18 +6,27 @@ sentiment:
   # - bad, nasty, poor, negative, unfortunate, wrong, inferior
     - [悪い, ひどい, 貧弱な, ネガティブ, 不幸な, 不運な, 誤った, 劣った]
 topic:
+  # politics
+  政治:
+    [政治, 国会, 内閣, 選挙]
+  #security
   安全保障:
     [安全保障, 安保, 自衛隊, 防衛, 核兵器, 軍縮, 紛争]
+  #diplomacy
   外交:
     [外交, 平和, 両国, 対話, 交流, 条約, 正常, 国際社会]
+  #welfare
   社会保障:
     [社会保障, 年金, 医療, 保険, 福祉, 介護]
+  #economy
   経済:
     [経済, 成長, 企業, 投資, 輸出, 市場, 雇用, 金融, 中小企業]
-  ジェンダー:
-    [女性, 男性]
+  #disaster
   災害:
     [被災, 災害, 復興, 震災]
+  #technology
   技術:
     [技術, 科学, 環境]
-  
+  #suburb
+  地方:
+    [農業, 農林, 地方]
