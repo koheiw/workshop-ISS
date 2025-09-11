@@ -1,7 +1,7 @@
 library(rvest)
 library(stringi)
 
-url <- "https://worldjpn.net/documents/indices/pm/index.html" # PM speech
+url <- "https://worldjpn.net/documents/indices/pm/index.html"
 
 html <- read_html(url)
 tr <- html_element(html, xpath = ".//table[2]") %>% 
@@ -38,7 +38,7 @@ for (i in seq_along(dat$url)) {
   dat$speaker[i] <- tryCatch({
     html <- read_html(u)
     p <- html_element(html, xpath = ".//p")
-    spk <- stri_match_first_regex(html_text(p), "\\[演説者\\](.+)内閣(総|總)理大臣\n")[,2]
+    spk <- stri_match_first_regex(html_text(p), "\\[演説者\\](.+)内閣(総|總)理大臣")[,2]
     spk <- stri_trim(spk)
     if (nzchar(spk)) {
       spk
@@ -69,5 +69,5 @@ for (i in seq_along(dat$url)) {
   Sys.sleep(5)
 }
 
-saveRDS(dat, "data/data_speech2.RDS")
+saveRDS(dat, "data/data_speech.RDS")
 
