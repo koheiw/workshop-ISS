@@ -3,10 +3,11 @@ library(quanteda.textstats)
 library(stringi)
 
 dat <- readRDS("data/data_speech_expm.RDS") %>% 
-  subset(!is.na(date) & !is.na(text))
-dat$year <- as.integer(format(dat$date, "%Y"))
+  subset(!is.na(date) & nzchar(text))
+
 dat$text <- stri_trans_nfkc(dat$text)
 dat$doc_id <- stri_replace_last_fixed(basename(dat$url), ".html", "")
+dat$year <- as.integer(format(dat$date, "%Y"))
 
 pm <- read.csv("data/speaker_fixed.csv")
 dat <- merge(dat, pm[-1], by = c("year", "title"), all.y = FALSE, sort = FALSE)
