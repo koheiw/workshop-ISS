@@ -25,3 +25,15 @@ dat <- data.frame(docname = docnames(dfmt),
                   lss = predict(lss, dfmt, min_n = 20))
 saveRDS(dat, file = "result/data_lss.RDS")
 
+# optimization -------------------------------
+
+lss <- readRDS(file = "result/lss.RDS")
+
+bs1 <- bootstrap_lss(lss, mode = "term", verbose = TRUE)
+head(bs1, 10)
+tail(bs1, 10)
+
+bs2 <- bootstrap_lss(lss, what = "k", verbose = TRUE)
+head(bs2, 10)
+tail(bs2, 10)
+
