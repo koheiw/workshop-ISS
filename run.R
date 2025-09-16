@@ -1,0 +1,11 @@
+#source("pre/download.R")
+source("pre/corpus.R")
+source("pre/tokens.R")
+source("dictionary.R")
+source("lss.R")
+source("dictionary.R")
+
+# rmarkdown::render("report/dictionary.Rmd", knit_root_dir = "../")
+# rmarkdown::render("report/lda.Rmd", knit_root_dir = "../")
+# rmarkdown::render("report/lss.Rmd", knit_root_dir = "../")
+# rmarkdown::render("report/regression.Rmd", knit_root_dir = "../")
