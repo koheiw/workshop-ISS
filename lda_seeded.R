@@ -1,11 +1,12 @@
 library(quanteda)
 library(seededlda)
+quanteda_options(verbose = TRUE)
 
 dict <- dictionary(file = "dictionary.yml") 
 
 # load tokens
 toks <- readRDS("data/tokens_speech.RDS") %>% 
-  tokens_subset(year >= 1945)
+  tokens_subset(year >= 1947)
 
 # form LDA
 dfmt <- dfm(toks, remove_padding = TRUE, tolower = FALSE) %>% 
@@ -18,6 +19,7 @@ colSums(dfm_lookup(dfmt, dict$topic))
 slda <- textmodel_seededlda(dfmt, dict$topic, residual = 5, batch_size = 0.01, 
                             auto_iter = TRUE, adjust_alpha = 0.5, alpha = 0.1,
                             verbose = TRUE) 
+saveRDS(slda, file = "result/lda_seeded.RDS")
 
 # show topic terms
 terms(slda)
@@ -28,7 +30,5 @@ sizes(slda)
 dat <- data.frame(docname = docnames(dfmt), 
                   docvars(dfmt), 
                   topic = topics(slda))
-
-saveRDS(slda, file = "result/lda_seeded.RDS")
 saveRDS(dat, file = "result/data_slda.RDS")
 

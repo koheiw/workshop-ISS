@@ -1,9 +1,10 @@
 library(quanteda)
 library(seededlda)
+quanteda_options(verbose = TRUE)
 
 # load tokens
 toks <- readRDS("data/tokens_speech.RDS") %>% 
-  tokens_subset(year >= 1945)
+  tokens_subset(year >= 1947)
 
 # form DFM
 dfmt <- dfm(toks, remove_padding = TRUE, tolower = FALSE)

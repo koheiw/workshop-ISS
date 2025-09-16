@@ -1,8 +1,9 @@
 library(quanteda)
+quanteda_options(verbose = TRUE)
 
 # load tokens
 toks <- readRDS("data/tokens_speech.RDS") %>% 
-  tokens_subset(year >= 1945)
+  tokens_subset(year >= 1947)
 
 # apply dictionary
 toks_dict <- tokens_lookup(toks, newsmap::data_dictionary_newsmap_ja, levels = 3)
