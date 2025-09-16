@@ -38,11 +38,10 @@ for (i in seq_along(dat$url)) {
     } else {
       NA_character_
     }
-    }, error = function(e) {
-      cat("Error", e$message, "\n")
-      return(NA_character_)
-    }
-  )
+  }, error = function(e) {
+    cat("Error", e$message, "\n")
+    return(NA_character_)
+  })
   Sys.sleep(5)
 }
 
