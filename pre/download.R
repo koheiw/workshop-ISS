@@ -3,6 +3,7 @@ library(stringi)
 
 url <- "https://worldjpn.net/documents/indices/pm/index.html"
 
+# download the list of pages
 html <- read_html(url)
 tr <- html_element(html, xpath = ".//table[2]") %>% 
   html_elements(xpath = ".//tr[not(th)]")
@@ -28,6 +29,7 @@ dat <- do.call(rbind, lis)
 dat$date <- as.Date(dat$date0, format = "%Y年%m月%d日")
 dat$url <- stri_replace_all_fixed(dat$url, "../../", "https://worldjpn.net/documents/")
 
+# download the pages
 dat$speaker <- dat$text <- NA_character_
 for (i in seq_along(dat$url)) {
   u <- dat$url[i]
