@@ -1,5 +1,5 @@
 ---
-title: "LDA"
+title: "LDA - Topic Analysis"
 author: "Kohei Watanabe"
 date: "`r Sys.Date()`"
 output: html_document

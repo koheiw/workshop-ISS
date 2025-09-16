@@ -1,5 +1,5 @@
 ---
-title: "Regression analysis"
+title: "Regression Analysis"
 author: "Kohei Watanabe"
 date: "`r Sys.Date()`"
 output: html_document
@@ -18,7 +18,7 @@ require(ggplot2)
 dat_lss <- readRDS("result/data_lss.RDS")
 dat_lda <- readRDS("result/data_slda.RDS")
 dat_dic <- readRDS("result/data_dictionary.RDS")
-dat <- cbind(dat_lda, dat_lss[c("lss")], dat_dic[c("us", "cn", "ru", "kr", "kp")])
+dat <- cbind(dat_lda, dat_lss[c("lss")], dat_dic[c("us", "cn", "kr", "kp", "jp")])
 
 dict <- quanteda::dictionary(file = "dictionary.yml")
 dat <- subset(dat, topic %in% names(dict$topic))
@@ -64,13 +64,14 @@ dat_sec <- subset(dat, topic %in% c("安全保障", "外交"))
 ### Countries
 
 ```{r}
-reg3 <- lm(lss ~ us + cn + ru + kp + kr, dat_sec)
+reg3 <- lm(lss ~ us + cn + kp + kr + jp, dat_sec)
 summary(reg3)
 ```
 
-### Countries and post-1991
+### Countries and Abe
 
 ```{r}
-reg4 <- lm(lss ~ us * p91 + cn * p91 + ru * p91 + kp * p91 + kr * p91, dat_sec)
+reg4 <- lm(lss ~ us * abe + cn * abe + kp * abe + kr * abe + jp * abe, dat_sec)
 summary(reg4)
 ```
+
