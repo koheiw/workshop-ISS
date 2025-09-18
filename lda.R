@@ -28,9 +28,9 @@ sizes(lda)
 # lda_a05 <- textmodel_lda(dfmt, k = 25, batch_size = 0.01, auto_iter = TRUE,
 #                          verbose = TRUE, adjust_alpha = 0.5, alpha = 0.5) 
 # 
-# divergence(lda_k25)
-# divergence(lda_k10)
-# divergence(lda_a05)
+# divergence(lda_k25, min_size = 0)
+# divergence(lda_k10, min_size = 0)
+# divergence(lda_a05, min_size = 0)
 # 
 # perplexity(lda_k25)
 # perplexity(lda_k10)
