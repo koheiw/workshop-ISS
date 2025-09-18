@@ -1,4 +1,3 @@
-#install.packages("quanteda")
 library(quanteda)
 quanteda_options(verbose = TRUE)
 
@@ -9,7 +8,7 @@ corp <- corpus(txt)
 print(corp, max_nchar = -1)
 
 # tokenize
-toks <- tokens(corp, remove_punct = TRUE, padding = TRUE)
+toks <- tokens(corp, remove_punct = TRUE, padding = TRUE, concatenator = "")
 print(toks, max_ntoken = -1)
 
 # select features
