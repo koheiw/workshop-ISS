@@ -19,7 +19,7 @@ colSums(dfm_lookup(dfmt, dict$topic))
 slda <- textmodel_seededlda(dfmt, dict$topic, residual = 5, batch_size = 0.01, 
                             auto_iter = TRUE, adjust_alpha = 0.5, alpha = 0.1,
                             verbose = TRUE) 
-saveRDS(slda, file = "result/lda_seeded.RDS")
+saveRDS(slda, file = "result/slda.RDS")
 
 # show topic terms
 terms(slda)
@@ -31,4 +31,5 @@ dat <- data.frame(docname = docnames(dfmt),
                   docvars(dfmt), 
                   topic = topics(slda))
 saveRDS(dat, file = "result/data_slda.RDS")
+
 

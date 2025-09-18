@@ -1,5 +1,5 @@
 ---
-title: "LDA - Topic Analysis"
+title: "Seeded LDA - Topic Analysis"
 author: "Kohei Watanabe"
 date: "`r Sys.Date()`"
 output: html_document
@@ -16,7 +16,7 @@ library(seededlda)
 ```
 
 ```{r}
-slda <- readRDS("result/lda_seeded.RDS")
+slda <- readRDS("result/slda.RDS")
 ```
 
 ## Topic terms
