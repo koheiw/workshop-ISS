@@ -1,8 +1,10 @@
 # download files
 #source("pre/download.R")
+#source("pre/download_takaichi.R")
 
 # create a corpus object
 source("pre/corpus.R")
+source("pre/corpus_takaichi.R")
 
 # tokenize texts
 source("pre/tokens.R")

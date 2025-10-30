@@ -1,5 +1,4 @@
 library(quanteda)
-library(quanteda.textstats)
 library(stringi)
 quanteda_options(verbose = TRUE)
 
