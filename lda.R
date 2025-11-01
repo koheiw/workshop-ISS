@@ -20,6 +20,13 @@ terms(lda)
 # show topic sizes
 sizes(lda)
 
+# save the topics
+dat <- data.frame(docname = docnames(dfmt), 
+                  docvars(dfmt), 
+                  topic = topics(lda))
+saveRDS(dat, file = "result/data_lda.RDS")
+
+
 # optimization -------------------------------
 
 # lda_k25 <- readRDS(file = "result/lda.RDS")
