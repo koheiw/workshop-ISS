@@ -16,8 +16,9 @@ dfmt <- dfm(toks, remove_padding = TRUE, tolower = FALSE) %>%
 colSums(dfm_lookup(dfmt, dict$topic))
 
 # fit seeded LDA
+dict <- dictionary(file = "dictionary.yml")
 slda <- textmodel_seededlda(dfmt, dict$topic, residual = 5, batch_size = 0.01, 
-                            auto_iter = TRUE, adjust_alpha = 0.5, alpha = 0.1,
+                            auto_iter = TRUE, adjust_alpha = 0.9, alpha = 0.1,
                             verbose = TRUE) 
 saveRDS(slda, file = "result/slda.RDS")
 
