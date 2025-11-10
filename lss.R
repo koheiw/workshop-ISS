@@ -9,9 +9,8 @@ dfmt <- dfm(toks, remove_padding = TRUE, tolower = FALSE)
 
 dict <- dictionary(file = "dictionary.yml")
 seed <- as.seedwords(dict$sentiment)
-dfmt2 <- tokens_chunk(toks, size = 10) %>% 
-  dfm(remove_padding = TRUE, tolower = FALSE)
-lss <- textmodel_lss(dfmt2, seed, verbose = TRUE, k = 300)
+lss <- textmodel_lss(toks, seed, tolower = FALSE,
+                     min_count = 2, verbose = TRUE, k = 100)
 saveRDS(lss, file = "result/lss.RDS")
 
 # show the polarity words
