@@ -1,0 +1,33 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+#Sys.setlocale("LC_ALL","ja_JP.UTF-8")
+knitr::opts_chunk$set(echo = TRUE, dpi = 150, fig.height = 5, fig.width = 10,
+                      warning = FALSE, message = FALSE)
+library(quanteda)
+library(quanteda.textplots)
+```
+
+```{r}
+toks <- readRDS("data/tokens_speech.RDS") %>% 
+  tokens_subset(year >= 1947) 
+dfmt <- dfm(toks, remove_padding = TRUE, tolower = FALSE) %>% 
+  dfm_group(speaker) %>% 
+  dfm_trim(max_docfreq = 0.2, docfreq_type = "prop")
+  # dfm_group(speaker) %>% 
+  # dfm_tfidf()
+
+sim <- proxyC::simil(dfmt)
+rownames(sim) <- dfmt$speaker
+Matrix::diag(sim) <- 0
+```
+
+```{r}
+textplot_network(as.fcm(sim), min_freq = 0.7, omit_isolated = FALSE)
+```
+
+
