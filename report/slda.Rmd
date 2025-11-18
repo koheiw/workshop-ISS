@@ -13,6 +13,8 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 150, fig.height = 5, fig.width = 10,
                       warning = FALSE, message = FALSE)
 library(ggplot2)
 library(seededlda)
+library(quanteda)
+library(quanteda.textplots)
 ```
 
 ```{r}
@@ -34,4 +36,21 @@ agg <- aggregate(n ~ year + topic, dat, FUN = sum)
 ggplot(agg, aes(year, n, color = topic)) +
   geom_line() +
   facet_wrap(vars(topic))
+```
+
+## Semantic network {.tabset}
+
+```{r, results='asis'}
+term <- terms(slda, 50)
+for (m in colnames(term)) {
+  if (stringi::stri_startswith_fixed(m, "other"))
+    next
+  cat("###", m, "\n\n")
+  f <- terms(slda, 50)[,m]
+  fcmt <- fcm(slda$data[,f])
+  p <- slda$phi[m, f]
+  textplot_network(fcmt, min_freq = quantile(fcmt@x, 0.9), vertex_size = p / max(p) * 2) %>% 
+    print()
+  cat("\n\n")
+}
 ```
