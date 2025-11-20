@@ -24,7 +24,7 @@ lss <- readRDS("result/lss.RDS")
 ### Random highlighting
 
 ```{r}
-textplot_terms(lss, max_highlighted = 50)
+textplot_terms(lss, max_highlighted = 100)
 ```
 
 ### Custom highlighting
@@ -32,6 +32,14 @@ textplot_terms(lss, max_highlighted = 50)
 ```{r}
 textplot_terms(lss, highlighted = "*政治*")
 ```
+
+### Topic highlighting
+
+```{r}
+slda <- readRDS("result/slda.RDS")
+textplot_terms(lss, highlighted = seededlda::terms(slda, 1000)[,4])
+```
+
 
 ## Document polarity  {.tabset}
 
